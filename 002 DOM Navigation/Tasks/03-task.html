@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        td, th {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <table id="statsTable">
+        <tr>
+            <th>Месяц</th>
+            <th>Отдел 1</th>
+            <th>Отдел 2</th>
+        </tr>
+        <tr>
+            <td>Январь</td>
+            <td>50</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <td>Февраль</td>
+            <td>60</td>
+            <td>140</td>
+        </tr>
+        <tr>
+            <td>Март</td>
+            <td>125</td>
+            <td>115</td>
+        </tr>
+        <tr>
+            <td>Апрель</td>
+            <td>87</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Март</td>
+            <td>95</td>
+            <td>80</td>
+        </tr>
+        <tr>
+            <td>Июнь</td>
+            <td>115</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>Июль</td>
+            <td>125</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Итого:</td>
+            <td id="Sum2"></td>
+            <td id="Sum3"></td>
+        </tr>
+    </table>
+
+    <div id="result"></div>
+
+    <script>
+    
+        /*
+        Задание:
+        Добавьте строку "Итого" для таблицы statsTable. Напишите сценарий, которым выведите во вторую ячейку этой строки сумму всех числовых значений второй колонки.
+        Выведите в третью ячейку этой строки сумму всех числовых значений из третьей колонки таблицы.
+        В div с id result выведите сообщение "Отдел 1 сделал больше продаж" или "Отдел 2 сделал больше продаж" на основе раннее вычисленных значений в строке "Итого".
+        Используйте любые методы, которые были рассмотрены на в прошлых уроках.
+        */
+ 
+
+         let table = document.getElementById('statsTable');
+         let sumColumn2 = 0;
+         let sumColumn3 = 0;
+     
+
+
+        for (const row of table.rows) {
+    let valueColumn2 = row.cells[1].textContent;
+    let valueColumn3 = row.cells[2].textContent;
+    sumColumn2 += isNaN(Number(valueColumn2)) ? 0 : Number(valueColumn2);
+    sumColumn3 += isNaN(Number(valueColumn3)) ? 0 : Number(valueColumn3);
+}
+
+
+    document.getElementById('Sum2').textContent = sumColumn2;
+    document.getElementById('Sum3').textContent = sumColumn3;
+
+    let resultDiv = document.getElementById('result');
+    
+    if (sumColumn2 > sumColumn3) {
+        resultDiv.textContent = 'Отдел 1 сделал больше продаж';
+    } else if (sumColumn3 > sumColumn2) {
+        resultDiv.textContent = 'Отдел 2 сделал больше продаж';
+    } else {
+        resultDiv.textContent = 'Отделы сделали одинаковое количество продаж';
+    }
+
+
+          
+    
+// Элемент Table предоставляет дополнительные свойства для работы с элементами
+        // rows - коллекция строк таблицы <tr>
+        // cells - коллекция <td> и <th> находящихся в <tr>
+        // rowIndex - порядковый номер строки
+        /*let table = document.querySelector("#statsTable");
+        let output = document.querySelector("#output");
+
+        let sum = 0;
+        let rowLength = table.rows[0].cells.length; // количество колонок в таблице
+        for (const row of table.rows) {
+            let lastCell = row.cells[rowLength - 1];
+            sum += Number(lastCell.textContent);
+        }
+        */
+    </script>
+    
+</body>
+</html>
+
+   
